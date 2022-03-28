@@ -1,0 +1,94 @@
+{
+  "projectType": "application",
+  "root": "apps/factotum",
+  "sourceRoot": "apps/factotum/src",
+  "prefix": "factotum",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/factotum",
+        "index": "apps/factotum/src/index.html",
+        "main": "apps/factotum/src/main.ts",
+        "polyfills": "apps/factotum/src/polyfills.ts",
+        "tsConfig": "apps/factotum/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": ["apps/factotum/src/favicon.ico", "apps/factotum/src/assets"],
+        "styles": ["apps/factotum/src/styles.scss"],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/factotum/src/environments/environment.ts",
+              "with": "apps/factotum/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "factotum:build:production"
+        },
+        "development": {
+          "browserTarget": "factotum:build:development"
+        }
+      },
+      "defaultConfiguration": "development",
+      "options": {
+        "proxyConfig": "apps/factotum/proxy.conf.json"
+      }
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "factotum:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "apps/factotum/src/**/*.ts",
+          "apps/factotum/src/**/*.html"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/factotum"],
+      "options": {
+        "jestConfig": "apps/factotum/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
