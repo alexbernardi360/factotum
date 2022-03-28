@@ -2,12 +2,20 @@
   "name": "factotum",
   "version": "0.0.0",
   "license": "MIT",
+  "files": [
+    "dist/apps/factotum",
+    "dist/apps/api"
+  ],
   "scripts": {
+    "start": "node dist/apps/api/main.js",
     "ng": "nx",
     "postinstall": "node ./decorate-angular-cli.js && ngcc --properties es2015 browser module main",
-    "start": "nx serve",
+    "serve": "nx serve",
     "build": "nx build",
-    "test": "nx test"
+    "test": "nx test",
+    "start:fe": "nx serve factotum",
+    "start:be": "nx serve api",
+    "dev": "concurrently -p=\"{name}\" -n=\"Angular,NestJS\" -c=\"green,blue\" \"npm run start:fe\" \"npm run start:be\""
   },
   "private": true,
   "dependencies": {
@@ -22,6 +30,7 @@
     "@nestjs/common": "^8.0.0",
     "@nestjs/core": "^8.0.0",
     "@nestjs/platform-express": "^8.0.0",
+    "@nestjs/serve-static": "^2.2.2",
     "@nrwl/angular": "13.9.5",
     "reflect-metadata": "^0.1.13",
     "rxjs": "~7.4.0",
@@ -51,6 +60,7 @@
     "@types/node": "16.11.7",
     "@typescript-eslint/eslint-plugin": "~5.10.0",
     "@typescript-eslint/parser": "~5.10.0",
+    "concurrently": "^7.0.0",
     "cypress": "^9.1.0",
     "eslint": "~8.7.0",
     "eslint-config-prettier": "8.1.0",
