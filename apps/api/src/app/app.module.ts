@@ -9,6 +9,7 @@ import { AppService } from './app.service';
   imports: [
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', 'factotum'),
+      exclude: ['/api*']
     }),
   ],
   controllers: [AppController],
