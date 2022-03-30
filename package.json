@@ -2,16 +2,16 @@
   "name": "factotum",
   "version": "0.0.0",
   "license": "MIT",
-  "files": [
-    "dist/apps/factotum",
-    "dist/apps/api"
-  ],
+  "engines": {
+    "node": "16.x"
+  },
   "scripts": {
-    "start": "node dist/apps/api/main.js",
+    "start": "node dist/apps/api/main",
+    "heroku-postbuild": "echo Skip builds on Heroku",
     "ng": "nx",
     "postinstall": "node ./decorate-angular-cli.js && ngcc --properties es2015 browser module main",
     "serve": "nx serve",
-    "build": "npx run-many --target=build --projects=nx-fullstack,api --parallel=true",
+    "build": "nx build",
     "test": "nx test",
     "start:fe": "nx serve factotum",
     "start:be": "nx serve api",
