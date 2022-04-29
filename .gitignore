@@ -40,3 +40,4 @@ firebase-debug.log
 Thumbs.db
 
 .angular
+.env
